@@ -1,7 +1,5 @@
 # 🎙️ Transcribe
 
-![Platform](https://img.shields.io/badge/platform-Windows-0078D6?style=flat&logo=windows&logoColor=white) ![Language](https://img.shields.io/badge/language-Python-3776AB?style=flat&logo=python&logoColor=white) ![UI](https://img.shields.io/badge/UI-Tkinter-FFDD54?style=flat) ![Packaging](https://img.shields.io/badge/packaged%20with-PyInstaller-4B8BBE?style=flat) ![Executable](https://img.shields.io/badge/output-.exe-5C2D91?style=flat) ![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat) ![Security](https://img.shields.io/badge/code%20signing-signed-success?style=flat) ![License](https://img.shields.io/badge/license-MIT-green?style=flat) ![Transcription](https://img.shields.io/badge/transcription-real-time-blue?style=flat) ![DPI](https://img.shields.io/badge/DPI-aware-Yes-informational?style=flat) ![Development](https://img.shields.io/badge/dev%20mode-drag%20%26%20drop-lightgrey?style=flat)
-
 Transcribe es una aplicación de escritorio desarrollada en **Python (Tkinter)** para **transcribir** y gestionar grabaciones de audio de manera rápida, profesional y portable.
 
 El proyecto está diseñado para ser ligero, estable y totalmente portable, con soporte para entornos Windows modernos, empaquetado en .exe y firmado digitalmente para garantizar confianza y seguridad al usuario final.
