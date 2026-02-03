@@ -19,6 +19,7 @@ Transcribe es una **aplicación de escritorio portable desarrollada en Python** 
 * 🪟 **Ejecución silenciosa de la app**: La aplicación principal se ejecuta en segundo plano sin abrir ventanas de consola.
 * 📂 **Validación de entorno**: Mensajes claros si falta el entorno virtual o archivos críticos, evitando errores inesperados.
 * 📄 **Documentación completa**: README y RELEASE_DESCRIPTION incluidas, detallando instalación, ejecución y funcionalidades.
+* 🌐 Internacionalización (i18n)
 
 ---
 
@@ -60,9 +61,28 @@ Transcribe
 ### 📌 Recomendaciones de uso
 
 1. Extraer la carpeta en cualquier ubicación del sistema.
-2. Ejecutar `Iniciar.vbs` para crear el acceso directo y lanzar la aplicación.
-3. El acceso directo en el escritorio apunta automáticamente al script correcto, usando rutas relativas.
-4. No se requiere instalación de Python ni dependencias adicionales.
+2. Crear el entorno virtual:
+
+```
+py -3.11 -m venv venv
+
+```
+  * activar el entorno virtual:
+
+```
+.\venv\Scripts\Activate.ps1
+
+```
+  * Instalar dependencias:
+
+```
+pip install -r requirements.txt
+
+```
+
+3. Ejecutar `Iniciar.vbs` para crear el acceso directo y lanzar la aplicación.
+4. El acceso directo en el escritorio apunta automáticamente al script correcto, usando rutas relativas.
+5. No se requiere instalación de Python ni dependencias adicionales.
 
 ---
 
