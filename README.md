@@ -13,8 +13,8 @@ El proyecto está diseñado para ofrecer una experiencia sólida al usuario fina
 ![Status](https://img.shields.io/badge/status-stable-brightgreen?style=flat)
 ![Security](https://img.shields.io/badge/code%20signing-signed-success?style=flat)
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat)
-![Transcription](https://img.shields.io/badge/transcription-real-time-blue?style=flat)
-![DPI](https://img.shields.io/badge/DPI-aware-Yes-informational?style=flat)
+![Transcription](https://img.shields.io/badge/transcription-real--time-blue?style=flat)
+![DPI](https://img.shields.io/badge/DPI-aware-success?style=flat)
 ![Development](https://img.shields.io/badge/dev%20mode-drag%20%26%20drop-lightgrey?style=flat)
 
 ---
