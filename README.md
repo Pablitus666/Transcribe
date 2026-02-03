@@ -117,6 +117,16 @@ Pasos:
 
 ```
 cd Transcribe
+
+  * crear el entorno virtual:
+
+```
+py -3.11 -m venv venv
+
+```
+
+  * activar el entorno virtual:
+
 .\venv\Scripts\Activate.ps1
 
 ```
