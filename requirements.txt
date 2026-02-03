@@ -1,0 +1,4 @@
+Pillow
+keyboard
+tkinterdnd2
+python-vlc
