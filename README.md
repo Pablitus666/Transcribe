@@ -113,9 +113,7 @@ Pasos:
 
 ## Opción 2: Ejecución en desarrollo
 
-cd Transcribe
-
-```
+  * cd Transcribe
 
   * crear el entorno virtual:
 
@@ -123,11 +121,9 @@ cd Transcribe
 py -3.11 -m venv venv
 
 ```
-
   * activar el entorno virtual:
 
 ```
-
 .\venv\Scripts\Activate.ps1
 
 ```
