@@ -1,8 +1,8 @@
 # 🎙️ Transcribe
 
-Transcribe es una aplicación de escritorio desarrollada en **Python (Tkinter)** para **transcribir** y gestionar grabaciones de audio de manera rápida, profesional y portable.
+Transcribe es una aplicación de escritorio desarrollada en **Python (Tkinter)** orientada a la **transcripción** profesional de **audio** y **video**, pensada como una suite portable para Windows, estable, ligera y firmada digitalmente.
 
-El proyecto está diseñado para ser ligero, estable y totalmente portable, con soporte para entornos Windows modernos, empaquetado en .exe y firmado digitalmente para garantizar confianza y seguridad al usuario final.
+El proyecto está diseñado para ofrecer una experiencia sólida al usuario final: sin dependencias frágiles en producción, con compatibilidad DPI, ejecutable firmado y un sistema de lanzamiento portable que inspira confianza.
 
 ---
 ![Platform](https://img.shields.io/badge/platform-Windows-0078D6?style=flat&logo=windows&logoColor=white)
@@ -25,14 +25,17 @@ El proyecto está diseñado para ser ligero, estable y totalmente portable, con 
 
 ## 🎯 Objetivo del proyecto
 
-Transcribe nace con el objetivo de ofrecer una herramienta simple, estable y confiable para convertir grabaciones de audio en texto y gestionarlas fácilmente, evitando soluciones pesadas o dependencias inestables, y manteniendo una experiencia profesional y portable en Windows.
+Transcribe nace con el objetivo de ofrecer una herramienta simple, confiable y profesional para convertir grabaciones de audio y video en texto, manteniendo una arquitectura limpia, una interfaz clara y un enfoque 100 % portable en Windows.
+
+El proyecto evita soluciones pesadas o inestables y prioriza la seguridad, la experiencia del usuario y las buenas prácticas de distribución.
 
 ---
 
 ## ✨ Características principales
 
-* 🎙️ Transcripción de audio a texto en tiempo real o diferido
-* 📂 Selección manual de archivos de audio (WAV, MP3, etc.)
+* 🎙️ Transcripción de audio y video a texto
+* ⌨️ Control mediante teclas rápidas F1, F2, F3 y F4 para reproducción y navegación
+* 📂 Soporte para múltiples formatos (WAV, MP3, MP4, MKV, entre otros)
 * 🖼️ Interfaz escalable según DPI (HiDPI / 4K)
 * 🎨 Uso de iconografía HD escalable y elementos gráficos modernos
 * 🧠 Separación clara entre UI, configuración y utilidades
@@ -45,10 +48,12 @@ Transcribe nace con el objetivo de ofrecer una herramienta simple, estable y con
 
 ## 🖼️ Interfaz
 
-* Fondo con color primario configurable
-* Logo y elementos gráficos con relieve visual
-* Campos para seleccionar archivo de audio y mostrar transcripción
-* Botón de acción principal
+* Diseño limpio y profesional
+* Selección directa de archivos de audio o video
+* Controles de reproducción (retroceder, reproducir, detener, avanzar)
+* Slider de ganancia de decibeles
+* Slider de volumen
+* Escalado automático según la resolución del sistema
 * Escalado automático según resolución del sistema
 
 ---
@@ -60,13 +65,15 @@ Transcribe
 │
 ├── app
 │ ├── config.py # Configuración global (colores, tamaños, AppID)
-│ ├── ui_main.py # Construcción de la interfaz principal
-│ ├── utils.py # Funciones auxiliares (centrado, helpers, transcripción)
+│ ├── ui_main.py # Punto de entrada de la interfaz
+│ ├── utils.py # Utilidades y helpers de transcripción
 │
-├── images # Recursos gráficos (HD / escalables)
-├── venv # Entorno virtual
+├── gui # Componentes de la interfaz gráfica
+├── core # Módulos de soporte (DPI, hotkeys, etc.)
+├── images # Recursos gráficos HD
+├── venv # Entorno virtual (desarrollo)
 ├── Iniciar.vbs # Lanzador principal portable
-├── Transcribe.vbs # Lanzador alternativo portable
+├── Transcribe.vbs # Lanzador alternativo
 ├── Instalar_acceso_directo.ps1 # Instalador de acceso directo
 ├── requirements.txt
 └── main.spec # Configuración de PyInstaller
@@ -89,7 +96,8 @@ Transcribe
 * Detección automática del entorno:
   * 🧪 Desarrollo → Drag & Drop habilitado
   * 📦 Producción (.exe) → Drag & Drop deshabilitado
-* .exe y scripts firmados digitalmente para mayor confianza en Windows
+* Sistema de hotkeys ejecutado con elevación controlada en Windows
+* Ejecutable y scripts firmados digitalmente para mayor confianza en Windows
 * Sistema de lanzamiento portable mediante Iniciar.vbs y Transcribe.vbs
 
 ---
@@ -153,7 +161,6 @@ python ui_main.py
 ## 🔮 Posibles mejoras futuras
 
 * Soporte para múltiples archivos de audio simultáneos
-* Exportación de transcripciones a PDF o TXT
 * Historial de archivos procesados
 * Migración opcional a CustomTkinter para interfaz más moderna
 
