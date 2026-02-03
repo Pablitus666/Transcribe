@@ -117,10 +117,6 @@ cd Transcribe
 
 ```
 
-  * Activar entorno virtual:
-
-```
-
   * crear el entorno virtual:
 
 ```
