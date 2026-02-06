@@ -49,7 +49,7 @@ El proyecto está diseñado para ofrecer una experiencia sólida al usuario fina
 
 ---
 
-![Social Preview](images/Preview.png)
+![Social Preview](images2/Preview.png)
 
 ---
 
@@ -116,7 +116,7 @@ Transcribe
 ## 📷 Capturas de pantalla
 
 <p align="center">
-  <img src="images/screenshot.png?v=2" alt="Vista previa de la aplicación" width="600"/>
+  <img src="images2/screenshot.png?v=2" alt="Vista previa de la aplicación" width="600"/>
 </p>
 
 ---
