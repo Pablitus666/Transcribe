@@ -1,103 +1,119 @@
 # 📦 Transcribe – Release Notes
 
-## 🟢 Versión 1.0 – Primera versión estable
+## 🟢 Versión 2.0.0 – Reescritura completa en Python (Breaking Change)
 
 **Fecha de lanzamiento:** 2 de febrero de 2026
 
-### 🚀 Descripción general
+---
 
-Transcribe es una **aplicación de escritorio portable desarrollada en Python** que permite **transcribir audio a texto** de manera rápida, confiable y con un enfoque profesional para usuarios finales. Esta versión está diseñada para ser **totalmente portable**, **compatible con Windows 10 y 11**, y funciona sin necesidad de instalar Python, gracias al entorno virtual incluido y al empaquetado de scripts VBScript.
+## ⚠️ Aviso importante (Breaking Change)
+
+A partir de la **versión 2.0**, Transcribe fue **reescrito completamente en Python** y **ya no utiliza VBScript** ni distribución portable manual.
+
+La implementación anterior basada en VBScript se conserva únicamente bajo el tag:
+
+```
+v1.0-vbscript
+```
 
 ---
 
-### ✨ Novedades de esta versión
+## 🚀 Descripción general
 
-* ✅ **Versión portable completa**: Se puede mover a cualquier carpeta sin romper el acceso directo ni la ejecución.
-* 🔐 **Scripts firmados digitalmente**: Todos los scripts principales (`Iniciar.vbs`, `Transcribe.vbs`, `Instalar_acceso_directo.ps1`) cuentan con firma digital válida y timestamp, garantizando seguridad y confianza en Windows.
-* 🖥️ **Compatibilidad con rutas dinámicas**: Uso de rutas relativas para que el usuario pueda ubicar la carpeta en cualquier lugar del sistema.
-* 🎯 **Automatización de accesos directos**: Se crea el acceso directo en el escritorio automáticamente, con icono personalizado.
-* 🪟 **Ejecución silenciosa de la app**: La aplicación principal se ejecuta en segundo plano sin abrir ventanas de consola.
-* 📂 **Validación de entorno**: Mensajes claros si falta el entorno virtual o archivos críticos, evitando errores inesperados.
-* 📄 **Documentación completa**: README y RELEASE_DESCRIPTION incluidas, detallando instalación, ejecución y funcionalidades.
-* 🌐 Internacionalización (i18n)
+**Transcribe 2.0** es una **aplicación de escritorio para Windows** que permite **transcribir audio a texto** de forma rápida, confiable y profesional.
+
+Esta versión introduce una **distribución moderna basada en instalador**, con **ejecutables firmados digitalmente**, integración nativa con Windows y una experiencia de usuario más robusta.
+
+No requiere Python instalado ni configuraciones manuales.
 
 ---
 
-### ⚡ Detalles técnicos
+## ✨ Novedades principales
+
+* 🧠 **Reescritura completa en Python**
+* ⌨️ **Hotkeys nativos** (sin scripts externos)
+* 📦 **Distribución mediante instalador (Inno Setup)**
+* 🔐 **Ejecutables firmados digitalmente**
+* 🖥️ **Instalación automática en Program Files**
+* 🚀 **Inicio rápido y ejecución estable**
+* ❌ **Eliminación total de VBScript**
+* 🧹 **Arquitectura más limpia y mantenible**
+
+---
+
+## 🔐 Seguridad y firma digital
+
+* `Transcribe.exe` → firmado digitalmente
+* `Transcribe_Setup.exe` → firmado digitalmente
+* Certificado autofirmado (válido para desarrollo)
+* Windows puede mostrar advertencia leve al instalar (esperado)
+
+---
+
+## ⚙️ Detalles técnicos
 
 * **Lenguaje:** Python 3.11
 * **UI:** Python + Tkinter
-* **Scripts auxiliares:** VBScript (`.vbs`) y PowerShell (`.ps1`)
-* **Empaquetado:** Portable con entorno virtual (`venv`)
-* **Seguridad:** Firma digital con timestamp aplicada automáticamente
-* **Compatibilidad:** Windows 10 y 11
+* **Hotkeys:** Implementación nativa
+* **Empaquetado:** PyInstaller
+* **Instalador:** Inno Setup
+* **Firma:** Authenticode (certificado de desarrollo)
+* **Compatibilidad:** Windows 10 y Windows 11 (64-bit)
 
 ---
 
-### 📂 Estructura de archivos
+## 📦 Distribución
+
+### Archivo incluido en este Release
 
 ```
-Transcribe
-│
-├── bin/             # Archivos binarios auxiliares
-├── config/          # Configuración general
-├── core/            # Lógica principal de transcripción
-├── gui/             # Interfaz de usuario
-├── images/          # Recursos gráficos
-├── utils/           # Funciones auxiliares
-├── venv/            # Entorno virtual portable
-├── hotkey_server.py # Servidor de hotkeys (opcional)
-├── Iniciar.vbs      # Lanzador principal
-├── Transcribe.vbs   # Lanzador alternativo
-├── Instalar_acceso_directo.ps1 # Script de creación de acceso directo
-├── README.md
-├── RELEASE_DESCRIPTION.md
-├── requirements.txt
-└── ui_main.py       # Script principal de la aplicación
+Transcribe_Setup.zip
 ```
+
+Contenido del ZIP:
+
+```
+Transcribe_Setup.exe
+```
+
+### Instalación
+
+1. Descargar `Transcribe_Setup.zip`
+2. Extraer el archivo
+3. Ejecutar `Transcribe_Setup.exe`
+4. Seguir el asistente de instalación
+5. Acceso directo creado automáticamente
 
 ---
 
-### 📌 Recomendaciones de uso
+## ❌ Cambios respecto a versiones anteriores
 
-1. Extraer la carpeta en cualquier ubicación del sistema.
-2. Crear el entorno virtual:
+* Eliminado:
 
-```
-py -3.11 -m venv venv
+  * VBScript (`.vbs`)
+  * Entorno virtual manual
+  * Ejecución portable
+  * Configuración manual de dependencias
+* Ya no es necesario:
 
-```
-  * activar el entorno virtual:
-
-```
-.\venv\Scripts\Activate.ps1
-
-```
-  * Instalar dependencias:
-
-```
-pip install -r requirements.txt
-
-```
-
-3. Ejecutar `Iniciar.vbs` para crear el acceso directo y lanzar la aplicación.
-4. El acceso directo en el escritorio apunta automáticamente al script correcto, usando rutas relativas.
-5. No se requiere instalación de Python ni dependencias adicionales.
+  * Instalar Python
+  * Ejecutar scripts auxiliares
+  * Configurar rutas manualmente
 
 ---
 
-### 🛠️ Mejoras futuras
+## 🛠️ Mejoras futuras
 
-* Integración de servicios de transcripción en la nube para mayor precisión.
-* Registro de historial de transcripciones.
-* Función de exportación a distintos formatos de texto.
-* Posible migración a interfaz más moderna con WPF o PyQt.
+* Integración de servicios de transcripción en la nube
+* Historial de transcripciones
+* Exportación a múltiples formatos
+* Interfaz gráfica más moderna (PyQt / WPF)
+* Certificado EV para eliminar advertencias de Windows
 
 ---
 
-### 👨‍💻 Autor
+## 👨‍💻 Autor
 
 **Walter Pablo Téllez Ayala**
-📧 [pharmakoz@gmail.com](mailto:pharmakoz@gmail.com)
 
----
+📧 [pharmakoz@gmail.com](mailto:pharmakoz@gmail.com)

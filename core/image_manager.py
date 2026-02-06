@@ -3,6 +3,7 @@ from PIL import Image, ImageTk, ImageEnhance
 import os
 
 from core.image_enhancer import add_shadow
+from core.utils import resource_path # Importar resource_path
 
 def _create_disabled_pil_image(pil_image: Image.Image) -> Image.Image:
     """Crea una versión semitransparente de una imagen para usarla en estado deshabilitado."""
@@ -38,13 +39,19 @@ class ImageManager:
         :param return_disabled: Si es True, devuelve una tupla (normal_img, disabled_img).
         :return: PhotoImage o tupla de PhotoImages.
         """
-        if not os.path.exists(path):
-            print(f"Error: No se encontró la imagen en la ruta: {path}")
+        print(f"DEBUG ImageManager.load: Attempting to load original path: '{path}'")
+        # Usar resource_path para obtener la ruta correcta
+        resource_full_path = resource_path(path)
+
+        if not os.path.exists(resource_full_path):
+            print(f"DEBUG ImageManager.load: Image NOT FOUND at: '{resource_full_path}' (original: '{path}')")
             return (None, None) if return_disabled else None
+        else:
+            print(f"DEBUG ImageManager.load: Image FOUND at: '{resource_full_path}' (original: '{path}')")
 
         # La clave de caché distingue entre todas las variantes
-        key_normal = (path, size, self.scale, enhance, False)
-        key_disabled = (path, size, self.scale, enhance, True)
+        key_normal = (resource_full_path, size, self.scale, enhance, False)
+        key_disabled = (resource_full_path, size, self.scale, enhance, True)
 
         if return_disabled:
             if key_normal in self._cache and key_disabled in self._cache:
@@ -53,7 +60,7 @@ class ImageManager:
             return self._cache[key_normal]
 
         try:
-            pil_img = Image.open(path).convert("RGBA")
+            pil_img = Image.open(resource_full_path).convert("RGBA")
             
             if size:
                 w, h = size

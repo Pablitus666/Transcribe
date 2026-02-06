@@ -28,10 +28,6 @@ BUTTON_IMAGE_PATH = "images/boton.png"
 LOGO_IMAGE_PATH = "images/logo.png" # Nuevo path para el logo clickable
 TITLE_IMAGE_PATH = "images/titulo.png" # Nuevo path para el título visual
 
-# Ruta de FFmpeg (asumiendo que está en la raíz del proyecto)
-import os
-FFMPEG_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "ffmpeg.exe"))
-
 # Controles del reproductor
 SEEK_INTERVAL_MS = 1000 # Intervalo de salto en milisegundos (1 segundo)
 FAST_SEEK_INTERVAL_MS = 5000 # Intervalo de salto rápido en milisegundos (5 segundos)
