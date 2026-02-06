@@ -18,6 +18,7 @@ from core.waveform_simulator import WaveformSimulator
 from gui.waveform_canvas import WaveformCanvas
 from gui.i18n import tr # Add this import
 from core.audio_engine import AudioEngine
+from core.utils import resource_path # Importar resource_path
 from gui.volume_slider import VolumeSlider
 
 class MainWindow(ttk.Frame):
@@ -111,7 +112,7 @@ class MainWindow(ttk.Frame):
         self.parent.geometry(f"{width}x{height}+{x}+{y}")
         try:
             # iconbitmap es más robusto en Windows para establecer el ícono
-            self.parent.iconbitmap(settings.ICON_PATH)
+            self.parent.iconbitmap(resource_path(settings.ICON_PATH))
         except Exception:
             # Si falla (p.ej., en un sistema no Windows o archivo corrupto),
             # el método anterior con iconphoto podría servir como fallback,

@@ -1,10 +1,40 @@
 # 🎙️ Transcribe
 
+### 🚀 Transcribe 2.0
+
+⚠️ **Cambio incompatible** (Breaking change)
+A partir de la versión 2.0, Transcribe ha sido reescrito completamente en Python y abandona definitivamente la implementación basada en VBScript.
+
+La versión anterior se conserva únicamente con fines históricos bajo el tag:
+
+```
+v1.0-vbscript
+```
+---
+
+#### ✨ Novedades principales
+
+- ⌨️ Atajos de teclado nativos (sin scripts externos)
+- 🔐 Ejecutables firmados digitalmente
+- 📦 Distribución mediante instalador profesional para Windows
+- 🧹 Eliminación total de VBScript y PowerShell en producción
+---
+---
+#### 📥 Descarga e instalación
+👉 Descargar `Transcribe_Setup.zip`, desde GitHub Releases
+👉 Extraer el archivo ZIP
+👉 Ejecutar el instalador Transcribe_Setup.exe
+
+✔️ Compatible con Windows 10 y Windows 11
+✔️ No requiere Python instalado
+✔️ No requiere dependencias externas
+
+---
 Transcribe es una aplicación de escritorio desarrollada en **Python (Tkinter)** orientada a la **transcripción** profesional de **audio** y **video**, pensada como una suite portable para Windows, estable, ligera y firmada digitalmente.
 
 El proyecto está diseñado para ofrecer una experiencia sólida al usuario final: sin dependencias frágiles en producción, con compatibilidad DPI, ejecutable firmado y un sistema de lanzamiento portable que inspira confianza.
 
----
+
 ![Platform](https://img.shields.io/badge/platform-Windows-0078D6?style=flat&logo=windows&logoColor=white)
 ![Language](https://img.shields.io/badge/language-Python-3776AB?style=flat&logo=python&logoColor=white)
 ![UI](https://img.shields.io/badge/UI-Tkinter-FFDD54?style=flat)
@@ -44,6 +74,7 @@ El proyecto evita soluciones pesadas o inestables y prioriza la seguridad, la ex
 * 🔏 Firma digital de los scripts y ejecutables
 * 📦 Ejecutable .exe portable (no requiere Python)
 * 🚫 Eliminación de dependencias inestables en producción
+* 📦 Distribución mediante instalador (.exe)
 
 ---
 
@@ -99,11 +130,12 @@ Transcribe
   * 📦 Producción (.exe) → Drag & Drop deshabilitado
 * Sistema de hotkeys ejecutado con elevación controlada en Windows
 * Ejecutable y scripts firmados digitalmente para mayor confianza en Windows
-* Sistema de lanzamiento portable mediante Iniciar.vbs y Transcribe.vbs
+* Sistema de lanzamiento portable mediante Iniciar.vbs y Transcribe.vbs, para desarrolladores
+* Instalación estándar en Program Files
 
 ---
 
-## 🚀 Ejecución
+## 🚀 Ejecución Uso normal (recomendado)
 
 * Descarga la última versión estable desde GitHub Releases:
 
@@ -116,7 +148,9 @@ Pasos:
 
   * Extrae el contenido 
 
-  * Ejecuta Transcribe.exe
+  * Ejecuta Transcribe_Setup.exe
+
+  * Iniciar Transcribe desde el acceso directo
 
   * No requiere Python instalado ni dependencias externas
 
@@ -161,9 +195,9 @@ python ui_main.py
 
 ## 🔮 Posibles mejoras futuras
 
-* Soporte para múltiples archivos de audio simultáneos
-* Historial de archivos procesados
-* Migración opcional a CustomTkinter para interfaz más moderna
+* Procesamiento por lotes
+* Historial de transcripciones
+* Interfaz moderna opcional (CustomTkinter / PyQt)
 
 ---
 

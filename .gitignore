@@ -33,6 +33,13 @@ MANIFEST
 *.manifest
 *.spec
 
+# PSD files
+*.psd
+
+# Certificate files
+*.cer
+*.pfx
+
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
