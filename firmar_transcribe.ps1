@@ -29,58 +29,69 @@ $AuthorEmail = "pharmakoz@gmail.com"
 # Subject REAL del certificado (esto ES lo importante)
 $CertSubject = "CN=$AuthorName, O=$ProjectName, E=$AuthorEmail"
 
-$CertPasswordPlain = "transcribe_dev_password"
+$CertPasswordPlain = "Condorito123*#*?"
 $CertPassword = ConvertTo-SecureString $CertPasswordPlain -AsPlainText -Force
 $TimestampServer = "http://timestamp.digicert.com"
 
-$CertStore = "Cert:\CurrentUser\My"
-$PfxPath = Join-Path (Split-Path -Parent $FilesToSign[0]) "Transcribe_CodeSign.pfx"
+# Usar el PFX existente
+$PfxPath = "I:\Proyectos Finales Python\Proyecto Transcribe\Transcribe\installer\Transcribe_Dev_Cert.pfx"
 
 # ----------------------------------------------------------
-# BUSCAR CERTIFICADO EXISTENTE
+# BUSCAR CERTIFICADO EXISTENTE (DESHABILITADO PARA USAR PFX DIRECTO)
 # ----------------------------------------------------------
-Write-Host "Buscando certificado existente..." -ForegroundColor Yellow
+# Write-Host "Buscando certificado existente..." -ForegroundColor Yellow
 
-$cert = Get-ChildItem $CertStore | Where-Object {
-    $_.Subject -eq $CertSubject
-} | Select-Object -First 1
+# $cert = Get-ChildItem $CertStore | Where-Object {
+#     $_.Subject -eq $CertSubject
+# } | Select-Object -First 1
 
-if (-not $cert) {
+# if (-not $cert) {
 
-    Write-Host "Certificado no encontrado. Creando uno nuevo..." -ForegroundColor Yellow
+#     Write-Host "Certificado no encontrado. Creando uno nuevo..." -ForegroundColor Yellow
 
-    $cert = New-SelfSignedCertificate `
-        -Subject $CertSubject `
-        -Type CodeSigning `
-        -CertStoreLocation $CertStore `
-        -KeyExportPolicy Exportable `
-        -KeyUsage DigitalSignature `
-        -NotAfter (Get-Date).AddYears(2)
+#     $cert = New-SelfSignedCertificate `
+#         -Subject $CertSubject `
+#         -Type CodeSigning `
+#         -CertStoreLocation $CertStore `
+#         -KeyExportPolicy Exportable `
+#         -KeyUsage DigitalSignature `
+#         -NotAfter (Get-Date).AddYears(2)
 
-    Export-PfxCertificate `
-        -Cert $cert `
-        -FilePath $PfxPath `
-        -Password $CertPassword
+#     Export-PfxCertificate `
+#         -Cert $cert `
+#         -FilePath $PfxPath `
+#         -Password $CertPassword
 
-    Write-Host "Certificado creado correctamente:" -ForegroundColor Green
-    Write-Host "  Autor      : $AuthorName"
-    Write-Host "  Proyecto   : $ProjectName"
-    Write-Host "  Email      : $AuthorEmail"
-    Write-Host "  Thumbprint : $($cert.Thumbprint)"
+#     Write-Host "Certificado creado correctamente:" -ForegroundColor Green
+#     Write-Host "  Autor      : $AuthorName"
+#     Write-Host "  Proyecto   : $ProjectName"
+#     Write-Host "  Email      : $AuthorEmail"
+#     Write-Host "  Thumbprint : $($cert.Thumbprint)"
 
-} else {
+# } else {
 
-    Write-Host "Certificado encontrado:" -ForegroundColor Green
-    Write-Host "  Thumbprint : $($cert.Thumbprint)"
+#     Write-Host "Certificado encontrado:" -ForegroundColor Green
+#     Write-Host "  Thumbprint : $($cert.Thumbprint)"
 
-    if (-not (Test-Path $PfxPath)) {
-        Write-Host "Exportando certificado a PFX..." -ForegroundColor Yellow
-        Export-PfxCertificate `
-            -Cert $cert `
-            -FilePath $PfxPath `
-            -Password $CertPassword
-    }
+#     if (-not (Test-Path $PfxPath)) {
+#         Write-Host "Exportando certificado a PFX..." -ForegroundColor Yellow
+#         Export-PfxCertificate `
+#             -Cert $cert `
+#             -FilePath $PfxPath `
+#             -Password $CertPassword
+#     }
+# }
+
+# ----------------------------------------------------------
+# VERIFICACIÓN DE PFX EXISTENTE
+# ----------------------------------------------------------
+if (-not (Test-Path $PfxPath)) {
+    Write-Error "El archivo PFX especificado no se encuentra: $PfxPath"
+    exit 1
 }
+
+Write-Host "Usando archivo PFX existente:" -ForegroundColor Green
+Write-Host "  $PfxPath"
 
 # ----------------------------------------------------------
 # BUSCAR SIGNTOOL

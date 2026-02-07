@@ -45,6 +45,9 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 ; Ejecutable principal
 Source: "dist\Transcribe\Transcribe.exe"; DestDir: "{app}"; Flags: ignoreversion
 
+; Icono de la aplicación
+Source: "images\icon.ico"; DestDir: "{app}"; Flags: ignoreversion
+
 ; Archivos internos PyInstaller
 Source: "dist\Transcribe\_internal\*"; DestDir: "{app}\_internal"; Flags: recursesubdirs createallsubdirs
 
@@ -52,8 +55,8 @@ Source: "dist\Transcribe\_internal\*"; DestDir: "{app}\_internal"; Flags: recurs
 ; ICONOS
 ; =====================================================
 [Icons]
-Name: "{group}\Transcribe"; Filename: "{app}\Transcribe.exe"
-Name: "{commondesktop}\Transcribe"; Filename: "{app}\Transcribe.exe"; Tasks: desktopicon
+Name: "{group}\Transcribe"; Filename: "{app}\Transcribe.exe"; IconFilename: "{app}\icon.ico"
+Name: "{commondesktop}\Transcribe"; Filename: "{app}\Transcribe.exe"; Tasks: desktopicon; IconFilename: "{app}\icon.ico"
 
 ; =====================================================
 ; TAREAS OPCIONALES
