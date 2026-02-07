@@ -33,6 +33,11 @@ MANIFEST
 *.manifest
 *.spec
 
+# Installer Artifacts
+installer/Transcribe_Setup.exe
+installer/Transcribe_Setup.rar
+installer/Transcribe_Setup.zip
+
 # PSD files
 *.psd
 
