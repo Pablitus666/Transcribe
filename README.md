@@ -86,7 +86,6 @@ El proyecto evita soluciones pesadas o inestables y prioriza la seguridad, la ex
 * Slider de ganancia de decibeles
 * Slider de volumen
 * Escalado automático según la resolución del sistema
-* Escalado automático según resolución del sistema
 
 ---
 
