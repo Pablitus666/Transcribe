@@ -4,7 +4,7 @@ from tkinter import Toplevel
 from PIL import Image, ImageTk
 import os
 
-from config import settings
+import settings
 from core.image_manager import ImageManager
 from gui.i18n import tr # Add this import
 

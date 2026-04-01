@@ -29,26 +29,34 @@ logging.basicConfig(level=logging.INFO, format=LOG_FORMAT)
 
 def launch_server_as_admin():
     """
-    Intenta lanzar el hotkey_server como un subproceso elevado,
-    pasando un argumento para que sepa ejecutar su lógica de servidor.
+    Intenta lanzar el hotkey_server como un subproceso elevado.
     """
     if sys.platform != 'win32':
         logging.error(tr("privilege_elevation_windows_only"))
         return None
 
     try:
-        executable_path = sys.executable # sys.executable ya es el .exe principal
-        command_args = f'--hotkey-server'
-        
+        # Si estamos ejecutando desde el código fuente (.py)
+        if not getattr(sys, 'frozen', False):
+            executable_path = sys.executable  # El intérprete de Python (python.exe)
+            script_path = os.path.abspath(sys.argv[0])
+            command_args = f'"{script_path}" --hotkey-server'
+        else:
+            # Si estamos ejecutando el ejecutable compilado (.exe)
+            executable_path = sys.executable
+            command_args = '--hotkey-server'
+
+        logging.info(f"Lanzando servidor elevado: {executable_path} {command_args}")
+
         ret = ctypes.windll.shell32.ShellExecuteW(
             None,           # handle to parent window
             "runas",        # verb
-            executable_path, # file (el propio Transcribe.exe)
-            command_args,   # parameters (--hotkey-server)
+            executable_path, # file
+            command_args,   # parameters
             None,           # working directory
             1               # show command (SW_SHOWNORMAL)
         )
-        
+
         if ret > 32:
             logging.info(tr("ui_hotkey_elevation_request"))
             return True

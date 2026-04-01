@@ -1,6 +1,6 @@
 # gui/i18n.py
 import locale
-from config import settings # Import settings to get DEFAULT_LANGUAGE
+import settings # Import settings to get DEFAULT_LANGUAGE
 
 STRINGS = {
     "es": {
@@ -24,6 +24,7 @@ STRINGS = {
         "stop_button": "Detener",
         "load_file_button": "Cargar Archivo",
         "exit_button": "Salir",
+        "clear_button": "Borrar",
         "rewind_button": "<<",
         "forward_button": ">>",
         "hotkey_conn_lost": "Se ha perdido la conexión con el servidor de hotkeys.",
@@ -210,6 +211,7 @@ STRINGS = {
         "stop_button": "Stopp",
         "load_file_button": "Datei laden",
         "exit_button": "Beenden",
+        "clear_button": "Löschen",
         "rewind_button": "<<",
         "forward_button": ">>",
         "hotkey_conn_lost": "Verbindung zum Hotkey-Server verloren.",
@@ -272,6 +274,7 @@ STRINGS = {
         "stop_button": "Parar",
         "load_file_button": "Carregar Arquivo",
         "exit_button": "Sair",
+        "clear_button": "Limpar",
         "rewind_button": "<<",
         "forward_button": ">>",
         "hotkey_conn_lost": "Conexão perdida com o servidor de teclas de atalho.",
@@ -334,6 +337,7 @@ STRINGS = {
         "stop_button": "Ferma",
         "load_file_button": "Carica File",
         "exit_button": "Esci",
+        "clear_button": "Cancella",
         "rewind_button": "<<",
         "forward_button": ">>",
         "hotkey_conn_lost": "Connessione persa con il server degli hotkey.",

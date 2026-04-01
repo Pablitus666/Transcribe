@@ -1,6 +1,6 @@
 # 🎙️ Transcribe
 
-### 🚀 Transcribe 2.0
+### 🚀 Transcribe 2.0 (Python Edition)
 
 ⚠️ **Cambio incompatible** (Breaking change)
 A partir de la versión 2.0, Transcribe ha sido reescrito completamente en Python y abandona definitivamente la implementación basada en VBScript.
@@ -30,9 +30,9 @@ v1.0-vbscript
 ✔️ No requiere dependencias externas
 
 ---
-Transcribe es una aplicación de escritorio desarrollada en **Python (Tkinter)** orientada a la **transcripción** profesional de **audio** y **video**, pensada como una suite portable para Windows, estable, ligera y firmada digitalmente.
+Transcribe es una aplicación de escritorio desarrollada en **Python (Tkinter)** orientada a la **transcripción** profesional de **audio** y **video**, pensada como una suite para Windows, estable, ligera y firmada digitalmente.
 
-El proyecto está diseñado para ofrecer una experiencia sólida al usuario final: sin dependencias frágiles en producción, con compatibilidad DPI, ejecutable firmado y un sistema de lanzamiento portable que inspira confianza.
+El proyecto está diseñado para ofrecer una experiencia sólida al usuario final: sin dependencias frágiles en producción, con compatibilidad DPI, ejecutable firmado y un sistema de lanzamiento que inspira confianza.
 
 
 ![Platform](https://img.shields.io/badge/platform-Windows-0078D6?style=flat&logo=windows&logoColor=white)
@@ -55,7 +55,7 @@ El proyecto está diseñado para ofrecer una experiencia sólida al usuario fina
 
 ## 🎯 Objetivo del proyecto
 
-Transcribe nace con el objetivo de ofrecer una herramienta simple, confiable y profesional para convertir grabaciones de audio y video en texto, manteniendo una arquitectura limpia, una interfaz clara y un enfoque 100 % portable en Windows.
+Transcribe nace con el objetivo de ofrecer una herramienta simple, confiable y profesional para convertir grabaciones de audio y video en texto, manteniendo una arquitectura limpia, una interfaz clara y un enfoque profesional en Windows.
 
 El proyecto evita soluciones pesadas o inestables y prioriza la seguridad, la experiencia del usuario y las buenas prácticas de distribución.
 
@@ -65,6 +65,7 @@ El proyecto evita soluciones pesadas o inestables y prioriza la seguridad, la ex
 
 * 🎙️ Transcripción de audio y video a texto
 * ⌨️ Control mediante teclas rápidas F1, F2, F3 y F4 para reproducción y navegación
+* 🗑️ **Botón "Borrar"**: Limpieza física y segura del medio cargado desde la interfaz.
 * 📂 Soporte para múltiples formatos (WAV, MP3, MP4, MKV, entre otros)
 * 🖼️ Interfaz escalable según DPI (HiDPI / 4K)
 * 🎨 Uso de iconografía HD escalable y elementos gráficos modernos
@@ -72,9 +73,8 @@ El proyecto evita soluciones pesadas o inestables y prioriza la seguridad, la ex
 * 🧠 Separación clara entre UI, configuración y utilidades
 * 🪟 Ventana centrada y tamaño fijo
 * 🔏 Firma digital de los scripts y ejecutables
-* 📦 Ejecutable .exe portable (no requiere Python)
 * 🚫 Eliminación de dependencias inestables en producción
-* 📦 Distribución mediante instalador (.exe)
+* 📦 Distribución mediante instalador profesional (.exe)
 
 ---
 
@@ -85,6 +85,7 @@ El proyecto evita soluciones pesadas o inestables y prioriza la seguridad, la ex
 * Controles de reproducción (retroceder, reproducir, detener, avanzar)
 * Slider de ganancia de decibeles
 * Slider de volumen
+* **Bloqueo Lógico**: Los controles se protegen durante la carga sin alterar la estética visual.
 * Escalado automático según la resolución del sistema
 
 ---
@@ -92,22 +93,18 @@ El proyecto evita soluciones pesadas o inestables y prioriza la seguridad, la ex
 ## 🧱 Arquitectura del proyecto
 
 ```
-Transcribe
+Transcribe/
 │
-├── app
-│ ├── config.py # Configuración global (colores, tamaños, AppID)
-│ ├── ui_main.py # Punto de entrada de la interfaz
-│ ├── utils.py # Utilidades y helpers de transcripción
+├── ui_main.py          # Punto de entrada principal de la interfaz
+├── settings.py         # Configuración global (colores, tamaños, AppID)
+├── hotkey_server.py    # Servidor de atajos de teclado (elevado)
 │
-├── gui # Componentes de la interfaz gráfica
-├── core # Módulos de soporte (DPI, hotkeys, etc.)
-├── images # Recursos gráficos HD
-├── venv # Entorno virtual (desarrollo)
-├── Iniciar.vbs # Lanzador principal portable
-├── Transcribe.vbs # Lanzador alternativo
-├── Instalar_acceso_directo.ps1 # Instalador de acceso directo
-├── requirements.txt
-└── main.spec # Configuración de PyInstaller
+├── core/               # Módulos de lógica (Audio, Player, Hotkeys, DPI)
+├── gui/                # Componentes de la interfaz gráfica (Windows, Canvas)
+├── images/             # Recursos gráficos HD y assets
+├── images2/            # Capturas y recursos de documentación
+├── installer/          # Scripts de instalación y manuales
+└── requirements.txt    # Dependencias de desarrollo
 ```
 
 ---
@@ -122,15 +119,13 @@ Transcribe
 
 ## 🧠 Detalles técnicos destacados
 
-* DPI Awareness activado para evitar imágenes borrosas
-* Escalado automático de iconos e interfaz según factor de resolución
-* Detección automática del entorno:
-  * 🧪 Desarrollo → Drag & Drop habilitado
-  * 📦 Producción (.exe) → Drag & Drop deshabilitado
-* Sistema de hotkeys ejecutado con elevación controlada en Windows
-* Ejecutable y scripts firmados digitalmente para mayor confianza en Windows
-* Sistema de lanzamiento portable mediante Iniciar.vbs y Transcribe.vbs, para desarrolladores
-* Instalación estándar en Program Files
+* DPI Awareness activado para evitar imágenes borrosas.
+* Escalado automático de iconos e interfaz según factor de resolución.
+* **Seguridad de Hotkeys**: Se eliminó la captura global de la tecla `Supr` para evitar borrados accidentales fuera de la app.
+* **Inmunidad de Salida**: El botón de cerrar permanece funcional incluso durante procesos de carga bloqueantes.
+* Sistema de hotkeys ejecutado con elevación controlada en Windows.
+* Ejecutable y scripts firmados digitalmente para mayor confianza en Windows.
+* Instalación estándar en Program Files.
 
 ---
 
@@ -144,49 +139,36 @@ https://github.com/Pablitus666/Transcribe/releases
 Pasos:
 
   * Descarga el archivo .zip desde Releases
-
   * Extrae el contenido 
-
   * Ejecuta Transcribe_Setup.exe
-
   * Iniciar Transcribe desde el acceso directo
-
   * No requiere Python instalado ni dependencias externas
 
 ## Opción 2: Ejecución en desarrollo
 
   * cd Transcribe
-
   * crear el entorno virtual:
-
 ```
 py -3.11 -m venv venv
-
 ```
   * activar el entorno virtual:
-
 ```
 .\venv\Scripts\Activate.ps1
-
 ```
   * Instalar dependencias:
-
 ```
 pip install -r requirements.txt
-
 ```
   * Ejecutar script principal:
-
 ```
 python ui_main.py
-
 ```
 ---
 
 ## 📦 Estado del proyecto
 
 - ✔️ Estable 
-- ✔️ Portable y listo para uso real
+- ✔️ Listo para uso real
 - ✔️ Enfoque profesional 
 - ✔️ Compatible con Windows 10 / 11
 
@@ -215,10 +197,12 @@ Si encuentras un problema o tienes una idea, no dudes en abrir un *issue* o *pul
 
 ## 👨‍💻 Autor
 
-Proyecto creado con enfoque en **calidad, estabilidad y buenas prácticas**.
+**Walter Pablo Téllez Ayala**  
+Software Developer  
+📍 Bolivia 🇧🇴 <img src="https://flagcdn.com/w20/bo.png" width="20"/> <br>
+📧 [pharmakoz@gmail.com](mailto:pharmakoz@gmail.com) 
 
-*   **Nombre:** Pablo Téllez
-*   **Contacto:** pharmakoz@gmail.com
+© 2026 — Transcribe Tool
 
 ---
 

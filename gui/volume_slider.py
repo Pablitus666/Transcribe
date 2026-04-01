@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from config import settings
+import settings
 from gui.i18n import tr
 
 

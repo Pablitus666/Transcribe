@@ -6,6 +6,7 @@ import os
 from multiprocessing.connection import Listener
 import time
 
+import settings
 from core.hotkeys import HotkeyManager
 from gui.i18n import tr
 
@@ -66,7 +67,6 @@ class HotkeyServer:
             'f2': lambda: send_command('stop_button_pressed'),
             'f3': lambda: send_command('seek_backward'),
             'f4': lambda: send_command('seek_forward'),
-            'delete': lambda: send_command('delete_media'),
         }
         release_callbacks = {
             'f3': lambda: send_command('stop_seek'),

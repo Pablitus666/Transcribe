@@ -6,9 +6,29 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     |_|   \__,_|_.__/|_|_|\__|\__,_|___(_|_|_)
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
-📦 Instalación
+📦 GUÍA DE INSTALACIÓN - Transcribe v1.0.0
 
-1. Descargue Transcribe_Setup.zip
-2. Descomprima el archivo
-3. Ejecute Transcribe_Setup.exe
-4. Siga el asistente de instalación
+Siga estos pasos para una instalación correcta:
+
+1. DESCOMPRESIÓN:
+   Extraiga el contenido de 'Transcribe_Setup.zip' en una carpeta local.
+
+2. INSTALACIÓN:
+   Haga doble clic en 'Transcribe_Setup.exe' para iniciar el asistente.
+   
+   Nota de Seguridad: El instalador cuenta con FIRMA DIGITAL SHA256. 
+   Si Windows muestra una advertencia, 
+   haga clic en "Más información" y luego en "Ejecutar de todas formas".
+
+3. CONFIGURACIÓN:
+   Siga los pasos del asistente. Se recomienda crear un acceso directo 
+   en el escritorio para un acceso rápido.
+
+4. USO DE HOTKEYS (Teclas Globales):
+   Al abrir la aplicación, Windows solicitará permisos de Administrador. 
+   Esto es NECESARIO para que las teclas de función (F1, F2, F3, F4) 
+   puedan controlar el audio incluso cuando la aplicación está minimizada.
+
+---
+Desarrollado por: Walter Pablo Téllez Ayala
+Tarija - 2026.

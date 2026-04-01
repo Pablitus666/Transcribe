@@ -7,7 +7,7 @@ import logging
 import time
 import threading
 
-from config import settings
+import settings
 from gui.about_window import AboutWindow
 from gui.progress_bar import ProgressCanvas
 from gui.audio_placeholder import AudioPlaceholder
@@ -27,6 +27,7 @@ class MainWindow(ttk.Frame):
         self.parent = parent
         self.scale_factor = scale_factor
         self.ipc_connection = ipc_connection
+        self.ui_locked = False # Inicializar inmediatamente
         
         self.about_window = None
         self._is_user_seeking = False
@@ -239,21 +240,40 @@ class MainWindow(ttk.Frame):
 
         bottom_buttons_frame = ttk.Frame(controls_frame, style="Controls.TFrame")
         bottom_buttons_frame.grid(row=1, column=0, columnspan=3, sticky='ew', pady=(10,0))
-        bottom_buttons_frame.columnconfigure([0, 3], weight=1)
+        bottom_buttons_frame.columnconfigure([0, 4], weight=1)
         self.load_file_button = self._create_image_button(bottom_buttons_frame, tr("load_file_button"), self._load_file_from_dialog, self.large_button_normal, self.large_button_disabled)
         self.load_file_button.grid(row=0, column=1, padx=5)
-        self.exit_button = self._create_image_button(bottom_buttons_frame, tr("exit_button"), self._on_closing, self.large_button_normal, self.large_button_disabled)
-        self.exit_button.grid(row=0, column=2, padx=5)
+        self.clear_button = self._create_image_button(bottom_buttons_frame, tr("clear_button"), self._delete_current_media, self.large_button_normal, self.large_button_disabled)
+        self.clear_button.grid(row=0, column=2, padx=5)
+        self.exit_button = self._create_image_button(bottom_buttons_frame, tr("exit_button"), self._on_closing, self.large_button_normal, self.large_button_disabled, bypass_lock=True)
+        self.exit_button.grid(row=0, column=3, padx=5)
 
-    def _create_image_button(self, parent, text, cmd, img_normal, img_disabled):
-        btn = tk.Button(parent, text=text, image=img_normal, compound="center", font=settings.FONT_BOLD, command=cmd, bg=settings.COLOR_PRIMARY_BACKGROUND, fg=settings.COLOR_PRIMARY_TEXT, bd=0, cursor="hand2", highlightthickness=0, activebackground=settings.COLOR_PRIMARY_BACKGROUND, activeforeground=settings.COLOR_ACCENT)
+    def _create_image_button(self, parent, text, cmd, img_normal, img_disabled, bypass_lock=False):
+        def wrapped_command():
+            if (bypass_lock or not self.ui_locked) and cmd:
+                cmd()
+
+        btn = tk.Button(parent, text=text, image=img_normal, compound="center", font=settings.FONT_BOLD, 
+                        command=wrapped_command, bg=settings.COLOR_PRIMARY_BACKGROUND, fg=settings.COLOR_PRIMARY_TEXT, 
+                        bd=0, cursor="hand2", highlightthickness=0, activebackground=settings.COLOR_PRIMARY_BACKGROUND, 
+                        activeforeground=settings.COLOR_ACCENT)
         btn.image_normal = img_normal
         btn.image_disabled = img_disabled
-        btn.bind("<Enter>", lambda e: e.widget.config(fg=settings.COLOR_ACCENT) if e.widget['state'] == tk.NORMAL else None)
-        btn.bind("<Leave>", lambda e: e.widget.config(fg=settings.COLOR_PRIMARY_TEXT))
+        
+        def on_enter(e):
+            if bypass_lock or not self.ui_locked:
+                e.widget.config(fg=settings.COLOR_ACCENT)
+
+        def on_leave(e):
+            e.widget.config(fg=settings.COLOR_PRIMARY_TEXT)
+
+        btn.bind("<Enter>", on_enter)
+        btn.bind("<Leave>", on_leave)
         return btn
 
     def _handle_drop(self, event):
+        if getattr(self, "ui_locked", False):
+            return
         try:
             filepath = self.parent.tk.splitlist(event.data)[0]
             if self.player.get_current_media_path() and os.path.normpath(self.player.get_current_media_path()) == os.path.normpath(filepath):
@@ -432,7 +452,7 @@ class MainWindow(ttk.Frame):
             self.status_label.config(text=msg)
             self._update_button(self.play_pause_button, tr("play_button"))
             self._reset_playback_ui()
-            self._disable_all_controls()
+            self._enable_controls(for_playback=False)
             self._send_ipc_message({"status": "media_unloaded"})
             self.audio_placeholder.reset()
             self.waveform_simulator.reset_energy(soft=False)
@@ -512,14 +532,13 @@ class MainWindow(ttk.Frame):
 
 
     def _enable_controls(self, for_playback=False):
-        self._update_button(self.load_file_button, state=tk.NORMAL)
-        self._update_button(self.play_pause_button, state=tk.NORMAL)
-        self._update_button(self.stop_button, state=tk.NORMAL)
-        self._update_button(self.rewind_button, state=tk.NORMAL)
-        self._update_button(self.forward_button, state=tk.NORMAL)
+        self.ui_locked = False
+        self.parent.config(cursor="")
         self.gain_slider.config(state=tk.NORMAL if for_playback else tk.DISABLED)
     
     def _disable_all_controls(self):
+        self.ui_locked = True
+        self.parent.config(cursor="watch")
         self.gain_slider.config(state=tk.DISABLED)
 
     def _update_button(self, button, text=None, state=None):
