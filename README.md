@@ -90,6 +90,17 @@ El proyecto evita soluciones pesadas o inestables y prioriza la seguridad, la ex
 
 ---
 
+## 📄 Optimización de Microsoft Word
+
+Para los usuarios que utilizan **Microsoft Word** junto con **Transcribe**, se han incluido dos herramientas de utilidad en la carpeta raíz del proyecto para evitar conflictos con las teclas de función (F1 y F2):
+
+*   **`Optimizar_Word_para_Transcripcion.vbs`**: Desactiva temporalmente las teclas F1 y F2 en Word. Esto permite que el servidor de hotkeys de Transcribe capture estas teclas sin que Word abra la ventana de Ayuda o active funciones internas.
+*   **`Restaurar_Teclas_Word.vbs`**: Restaura las funciones originales de F1 y F2 en Word. Esta herramienta **no afecta** a sus diccionarios personales, autocorrecciones ni abreviaturas personalizadas.
+
+Ambas herramientas son opcionales, requieren permisos de administrador para modificar la plantilla `Normal.dotm` de Word y presentan una interfaz de ventanas nativa de Windows para mayor seguridad y confianza.
+
+---
+
 ## 🧱 Arquitectura del proyecto
 
 ```

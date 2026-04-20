@@ -28,6 +28,9 @@ Esta actualización consolida a **Transcribe** como una herramienta técnica de 
 - **Robustez de Configuración**: Corrección de importaciones para asegurar la carga de `settings.py` en entornos empaquetados (.exe).
 - **Firma Digital**: Todos los binarios e instaladores cuentan con firma digital SHA256 verificada por Walter Pablo Téllez Ayala.
 
+### 📄 Herramientas de Optimización (Microsoft Word)
+- **Nuevas Utilidades VBScript**: Se han añadido los scripts `Optimizar_Word_para_Transcripcion.vbs` y `Restaurar_Teclas_Word.vbs` para gestionar de forma segura las teclas F1 y F2 en Word, evitando conflictos con Transcribe. Estas herramientas son independientes, seguras y respetan la configuración personal de Word (diccionarios y abreviaturas).
+
 ---
 
 ## ⚙️ Detalles de Distribución

@@ -562,6 +562,7 @@ class MainWindow(ttk.Frame):
                 self.playback_state.save_position(self.current_media_path, current_position, total_duration)
 
         self._send_ipc_message({"status": "ui_closing"})
+
         time.sleep(0.2)
         self.player.release()
         self.parent.quit()

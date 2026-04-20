@@ -73,7 +73,7 @@ def main_ui():
     Punto de entrada principal de la aplicación de UI.
     Lanza el servidor de hotkeys y luego inicia la interfaz de usuario.
     """
-    # 1. Lanzar el servidor de hotkeys en un proceso separado y elevado
+    # Lanzar el servidor de hotkeys en un proceso separado y elevado
     if not launch_server_as_admin():
         logging.error(tr("hotkey_server_failed_start"))
         return
