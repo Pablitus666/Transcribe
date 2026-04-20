@@ -128,18 +128,6 @@ Transcribe/
 
 ---
 
-## 🧠 Detalles técnicos destacados
-
-* DPI Awareness activado para evitar imágenes borrosas.
-* Escalado automático de iconos e interfaz según factor de resolución.
-* **Seguridad de Hotkeys**: Se eliminó la captura global de la tecla `Supr` para evitar borrados accidentales fuera de la app.
-* **Inmunidad de Salida**: El botón de cerrar permanece funcional incluso durante procesos de carga bloqueantes.
-* Sistema de hotkeys ejecutado con elevación controlada en Windows.
-* Ejecutable y scripts firmados digitalmente para mayor confianza en Windows.
-* Instalación estándar en Program Files.
-
----
-
 ## 🚀 Ejecución Uso normal (recomendado)
 
 * Descarga la última versión estable desde GitHub Releases:
